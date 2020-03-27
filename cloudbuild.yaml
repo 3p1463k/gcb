@@ -2,6 +2,5 @@
 steps:
 - name: gcr.io/cloud-builders/docker
   args: ['build', '-t', 'gcr.io/dash-plot/cov19cz', '.']
-images: ['gcr.io/$PROJECT_ID/myimage']
 
 timeout: 3600s
