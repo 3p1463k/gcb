@@ -1,5 +1,10 @@
 # get shiny serves plus tidyverse packages image
 FROM rocker/shiny-verse:latest
+RUN mkdir -p /var/lib/shiny-server/bookmarks/shiny
+RUN chmod -R 755 /srv/shiny-server/
+
+RUN sed -i 's/3838/3838 0.0.0.0/' /etc/shiny-server/shiny-server.conf
+
 
 # system libraries of general use
 RUN apt-get update && apt-get install -y \
@@ -17,9 +22,7 @@ RUN apt-get update && apt-get install -y \
     libudunits2-dev\
     libgdal-dev
 
-RUN sed -i 's/3838/3838 0.0.0.0/' /etc/shiny-server/shiny-server.conf
 
-RUN mkdir -p /var/lib/shiny-server/bookmarks/shiny
 
 #RUN R -e "remotes::install_github(c('rstudio/httpuv'))"
 RUN R -e "install.packages('shiny', repos='http://cran.rstudio.com/')"
@@ -43,13 +46,14 @@ RUN R -e "install.packages('deSolve', repos='http://cran.rstudio.com/')"
 # copy the app to the image
 COPY app.R /srv/shiny-server/
 COPY  google-analytics.html /srv/shiny-server/
-#COPY data /srv/shiny-server/data
+#COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
+RUN chown -R shiny:shiny /srv/shiny-server
 
 # select port
-EXPOSE 80
+EXPOSE 8080
 
 # allow permission
-RUN sudo chown -R shiny:shiny /srv/shiny-server
+
 
 # run app
 CMD ["/usr/bin/shiny-server.sh"]
