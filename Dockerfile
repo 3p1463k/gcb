@@ -56,4 +56,5 @@ EXPOSE 8080
 
 
 # run app
-CMD ["/usr/bin/shiny-server.sh"]
+#CMD ["/usr/bin/shiny-server.sh"]
+CMD ["R", "-e", "shiny::runApp('/srv/shiny', host='0.0.0.0', port=8080"]
