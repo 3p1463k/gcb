@@ -1,6 +1,6 @@
 
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: ['build', '-t', 'gcr.io/dash-plot/cov19cz', '.']
+  args: ['build', '-t', 'gcr.io/dash-plot/cov19cz']
 
 timeout: 3600s
