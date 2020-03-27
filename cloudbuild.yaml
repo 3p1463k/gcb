@@ -1,4 +1,2 @@
-steps:
-- name: 'cov19cz'
-  args: ['sleep', '600']
+
 timeout: 3600s
