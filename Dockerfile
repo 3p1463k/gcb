@@ -3,7 +3,7 @@ FROM rocker/shiny-verse:latest
 RUN mkdir -p /var/lib/shiny-server/bookmarks/shiny
 RUN chmod -R 755 /srv/shiny-server/
 
-RUN sed -i 's/3838/3838 0.0.0.0/' /etc/shiny-server/shiny-server.conf
+#RUN sed -i 's/3838/3838 0.0.0.0/' /etc/shiny-server/shiny-server.conf
 
 
 # system libraries of general use
